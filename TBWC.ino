@@ -26,6 +26,9 @@ const float trialTwoForwardTargetMeters = 2;
 const float trialTwoSlowZoneMeters = 1.5;
 const float trialTwoReverseTargetMeters = 0;
 
+//Minimum PWM (speed) required for the drivetrain to stil move
+const int minPWM = 50; // This value needs to be experimentally determined still
+
 //Initalize pins for input and output
 void setup() {
   switch (trial) {
@@ -52,6 +55,7 @@ void setup() {
 void loop() {
   
   sense_distance();
+  //motor_speed(pwm int);
   delay(25);
 
 }
