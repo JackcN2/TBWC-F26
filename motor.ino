@@ -9,7 +9,7 @@ void motor_forward(){
 void motor_reverse(){
   digitalWrite(motorFWD, LOW);
   digitalWrite(motorREV, HIGH);
-  if (debug == 1){Serial.println("Motor Reversing");}
+  if (debug == 1){Serial.println("Motor reversing");}
   
 }
 void motor_brake(){
