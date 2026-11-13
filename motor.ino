@@ -15,9 +15,8 @@ void motor_reverse(){
 void motor_brake(){
   digitalWrite(motorFWD, LOW);
   digitalWrite(motorREV, LOW);
-  analogWrite(motorSpeed, 0);
+  digitalWrite(motorSpeed, HIGH);  
   if (debug == 1){Serial.println("Motor Braking");}
-  
 }
 
 void motor_speed(int speedPWM){
