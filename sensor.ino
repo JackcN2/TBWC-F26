@@ -1,10 +1,11 @@
 unsigned long previousMillis = 0;
 const long interval = 50;
+const unsigned long echoTimeoutUs = 30000; //5 meters, Timeout stops pulsein() from blocking for a full second if it fails
 
 void sense_distance() {
-  //Microsecond delays are insignificant to the program and as such blocking delay calls are used for simplicity
+  //Microsecond delays are insignificant
   unsigned long currentMillis = millis();
-//Non blocking delay by a set interval (currently 50ms, may be adjusted) to avoid wasting processing power on distance scanning
+
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis;
 
@@ -14,13 +15,15 @@ void sense_distance() {
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
-  duration = pulseIn(echoPin, HIGH);
-  //Distance is read in cm and converted to meters for consistency
-  distance = ((duration*.0343)/2)/100;
-  if (debug == 1){
-  Serial.print("Distance (meters): ");
-  Serial.print(distance);
+  duration = pulseIn(echoPin, HIGH, echoTimeoutUs);
+ 
+  if (duration > 0) {
+    //Read in cm then converted to meters
+    distance = ((duration*.0343)/2)/100;
+    sampleTimeMs = currentMillis;
+    newDistanceSample = true;
   }
+
   }
  
 
