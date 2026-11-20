@@ -1,7 +1,7 @@
-//Rotates the dropper 180 degrees and waits 1.5 seconds for the payload to fall
+//Rotates the dropper 180 degrees and waits the set delay time
 void drop_payload(){
 dropper.write(180);
-delay(1500);
+delay(DROP_WAIT);
 if (debug == 1){Serial.println("Dropped!");}
 }
 
