@@ -1,0 +1,3 @@
+Each device connected to the Arduino (The motor controller, the servo, the ultrasonic sensor) has an I/O file which provides functions for the rest of the code to interface with it. This allows the main code to be hardware agnostic, and means less code needs to be changed if a device has to be swapped out. 
+
+The main file (TBWC.ino) provides global variables, controls the distance polling speed, and runs the trials starting state and state machines. Optionally, debug data and statements can be sent to the serial monitor from main. These will be turned off during the actual trials to conserve processing power.
