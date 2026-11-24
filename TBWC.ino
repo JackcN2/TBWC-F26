@@ -16,8 +16,8 @@ const int trial = 2;
 
 
 const float trialOneForwardTargetMeters = 0.60;
-const float trialTwoForwardTargetMeters = 1.2;  
-const float targetInSlowZone = 0.22;            
+const float trialTwoForwardTargetMeters = 1.5;  
+const float targetInSlowZone = 0.28;            
 const float distanceToleranceMeters = 0;
 const float distanceOffsetMeters = 0.1;        
 const float returnToleranceMeters = 0.05;      
@@ -125,7 +125,7 @@ void run_trial_one() {
 void run_trial_two() {
   if (state == DRIVING) {
     if (belowThreshold(trialTwoForwardTargetMeters + distanceToleranceMeters + distanceOffsetMeters)) {
-      motor_speed(235);
+      motor_speed(200);
       state = SLOW_ZONE;
       if (debug == 1) { Serial.println("In Slowzone");}
       belowCount = 0; 
@@ -135,12 +135,6 @@ void run_trial_two() {
       motor_brake();
       delay(SETTLE_MS);
       drop_payload();
-      analogWrite(light1, 190);
-      motor_reverse();
-      motor_speed(225);
-      delay(1000);
-      motor_speed(255);
-      delay(7500);
       motor_brake();
       analogWrite(light1, 0);
       state = DONE;
